@@ -1,0 +1,52 @@
+﻿@page "/blogs"
+@rendermode InteractiveServer
+@inherits BlogsBase
+@attribute [StreamRendering]
+
+
+@if (Blogs == null)
+{
+    <span>Loading . . . </span>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Publish Date</td>
+                <td>Content</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blog in Blogs)
+            {
+                <tr>
+                    <td>@blog.Id</td>
+                    <td>@blog.Title</td>
+                    <td>@blog.Author</td>
+                    <td>@blog.PublishDate</td>
+                    <td>@blog.Content</td>
+                    <td>
+                        <button @onclick="(args)=> SetCurrent(args, blog.Title)">Select Item</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h1>Current Blog @Current</h1>
+
+@code {
+    private string Current = "";
+    private void SetCurrent(object args,string title)
+    {
+        Current = title;
+    }
+
+
+}
