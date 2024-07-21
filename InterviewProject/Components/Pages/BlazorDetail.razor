@@ -1,0 +1,32 @@
+﻿@page "/blogs/{Id:int}"
+@using InterviewProject.Models
+@rendermode InteractiveServer
+@inherits BlogsBase
+@attribute [StreamRendering]
+
+<h1>
+    @if (Item != null)
+    {
+        <div>
+            <h2>@Item.Title</h2>
+            <p>@Item.Author</p>
+            <p>@Item.PublishDate.ToString("MM/dd/yyyy")</p> <!-- Assuming PublishDate is a DateTime -->
+            <p>@Item.Content</p>
+        </div>
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+</h1>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Item = await GetById(Id);
+        StateHasChanged(); // To ensure the component re-renders after the data is fetched
+    }
+}

@@ -17,10 +17,34 @@ namespace InterviewProject.Components.Services
             return blogs;
         }
 
-        public async Task<BlogPost> GetById(Guid id)
+        public async Task CreateBlogPost(BlogPost newBlogPost)
         {
-            var blog = await _httpClient.GetFromJsonAsync<BlogPost>("api/blogPost");
-            return blog;
+            var response = await _httpClient.PostAsJsonAsync("api/blogPost", newBlogPost);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<BlogPost> GetById(int id)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync($"api/blogPost/{id}");
+                response.EnsureSuccessStatusCode();
+                var jsonString = await response.Content.ReadAsStringAsync();
+                if (string.IsNullOrEmpty(jsonString))
+                {
+                    // Log empty response or handle accordingly
+                    return null;
+                }
+
+                var item = await response.Content.ReadFromJsonAsync<BlogPost>();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                // Log exception
+                Console.WriteLine($"Exception in GetById: {ex.Message}");
+                return null;
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InterviewProjectApi.Dtos;
+using InterviewProjectApi.Entities;
 using InterviewProjectApi.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,17 +32,22 @@ namespace InterviewProjectApi.Controllers
 
         // GET api/<BlogPostController>/5
         [HttpGet("{id}")]
-        public BlogPostDto Get(Guid id)
+        public async Task<ActionResult<BlogPost>> Get(int id)
         {
             var item = _blogPostService.GetById(id);
+            if(item == null)
+            {
+                return NotFound();
+            }
             var dto = _mapper.Map<BlogPostDto>(item);
-            return dto;
+            return Ok(dto);
         }
 
-        // POST api/<BlogPostController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<BlogPost> Create(BlogPost newBlogPost)
         {
+            _blogPostService.CreateBlogPost(newBlogPost);
+            return CreatedAtAction(nameof(Get), new { id = newBlogPost.Id }, newBlogPost);
         }
 
         // PUT api/<BlogPostController>/5

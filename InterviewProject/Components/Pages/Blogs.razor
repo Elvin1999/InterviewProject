@@ -31,7 +31,7 @@ else
                     <td>@blog.PublishDate</td>
                     <td>@blog.Content</td>
                     <td>
-                        <button @onclick="(args)=> SetCurrent(args, blog.Title)">Select Item</button>
+                        <a href="/blogs/@blog.Id">Select Item</a> - @blog.Title
                     </td>
                 </tr>
             }

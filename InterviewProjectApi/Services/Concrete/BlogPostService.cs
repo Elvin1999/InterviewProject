@@ -1,5 +1,6 @@
 ﻿using InterviewProjectApi.Entities;
 using InterviewProjectApi.Services.Abstract;
+using Microsoft.AspNetCore.Http.Features;
 using System.Linq.Expressions;
 
 namespace InterviewProjectApi.Services.Concrete
@@ -12,7 +13,7 @@ namespace InterviewProjectApi.Services.Concrete
         {
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 Title = "Exploring the New Features of .NET 6",
                 Author = "Jane Doe",
                 PublishDate = new DateTime(2024, 5, 7),
@@ -20,7 +21,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 2,
                 Title = "Understanding Dependency Injection in .NET",
                 Author = "John Smith",
                 PublishDate = new DateTime(2024, 4, 22),
@@ -28,7 +29,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 3,
                 Title = "Best Practices for Asynchronous Programming in C#",
                 Author = "Emily White",
                 PublishDate = new DateTime(2024, 3, 15),
@@ -36,7 +37,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 3,
                 Title = "Integrating AI with .NET Applications",
                 Author = "Michael Brown",
                 PublishDate = new DateTime(2024, 5, 1),
@@ -44,7 +45,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 4,
                 Title = "Migrating from .NET Framework to .NET Core",
                 Author = "Samantha Reed",
                 PublishDate = new DateTime(2024, 4, 18),
@@ -52,7 +53,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id =5,
                 Title = "Securing Web APIs in .NET",
                 Author = "Liam Wilson",
                 PublishDate = new DateTime(2024, 4, 5),
@@ -60,7 +61,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 6,
                 Title = "Advanced LINQ Tips and Tricks",
                 Author = "Olivia Johnson",
                 PublishDate = new DateTime(2024, 3, 28),
@@ -68,7 +69,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 7,
                 Title = "Using SignalR for Real-Time Communication in .NET",
                 Author = "Ethan Martinez",
                 PublishDate = new DateTime(2024, 3, 21),
@@ -76,7 +77,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 8,
                 Title = "Performance Optimization in .NET Applications",
                 Author = "Ava Taylor",
                 PublishDate = new DateTime(2024, 3, 10),
@@ -84,7 +85,7 @@ namespace InterviewProjectApi.Services.Concrete
             },
             new BlogPost
             {
-                Id = Guid.NewGuid(),
+                Id = 9,
                 Title = "Building Microservices with .NET",
                 Author = "Noah Lee",
                 PublishDate = new DateTime(2024, 2, 27),
@@ -92,16 +93,24 @@ namespace InterviewProjectApi.Services.Concrete
             }
         };
         }
+
+        public void CreateBlogPost(BlogPost newBlogPost)
+        {
+            GetBlogPosts().Add(newBlogPost);
+        }
+
         public IEnumerable<BlogPost> GetAll()
         {
             var items = GetBlogPosts();
             return items;
         }
 
-        public BlogPost GetById(Guid id)
+        public BlogPost GetById(int id)
         {
-            var item = GetBlogPosts().FirstOrDefault(i=>i.Id==id);
+            var items = GetBlogPosts();
+            var item = items.FirstOrDefault(i=>i.Id.ToString()==id.ToString());
             return item;
         }
+
     }
 }

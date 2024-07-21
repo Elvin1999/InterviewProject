@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewProject", "InterviewProject\InterviewProject.csproj", "{71A698DE-7AB2-4BEF-A984-1D0D03D7C62A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewProject", "InterviewProject\InterviewProject.csproj", "{71A698DE-7AB2-4BEF-A984-1D0D03D7C62A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterviewProjectApi", "InterviewProjectApi\InterviewProjectApi.csproj", "{F27768AA-665D-4B57-A90F-7A4D9D234B1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterviewProjectApi", "InterviewProjectApi\InterviewProjectApi.csproj", "{F27768AA-665D-4B57-A90F-7A4D9D234B1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

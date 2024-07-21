@@ -6,6 +6,7 @@ namespace InterviewProjectApi.Services.Abstract
     public interface IBlogPostService
     {
         IEnumerable<BlogPost> GetAll();
-        BlogPost GetById(Guid id);
+        BlogPost GetById(int id);
+        void CreateBlogPost(BlogPost newBlogPost);
     }
 }
